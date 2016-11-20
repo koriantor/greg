@@ -1,29 +1,23 @@
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, render_template_string
+from views.user import profile_blueprint
+from views.item import item_blueprint
+from views.home import home_blueprint
+from views.event import event_blueprint
 
 app = Flask(__name__)
 
 # ============
 #    ROUTES
 # ============
-@app.route('/')
-def hello_world():
-    return send_from_directory('templates', 'default.html')
+app.register_blueprint(profile_blueprint, url_prefix='/profile/<user_url_slug>')
+app.register_blueprint(item_blueprint, url_prefix="/item")
+app.register_blueprint(home_blueprint, url_prefix="/<user_url_slug>")
+app.register_blueprint(event_blueprint, url_prefix="/<user_url_slug>")
 
-@app.route('/<user>/')
-def showUser():
-    pass    # TODO: return user page
-
-@app.route('/<user>/<event>')
-def showEvent():
-    pass    # TODO: return event page
-
-@app.route('/login')
-def showLogin():
-    return "login" #TODO: return login page
-
-@app.route('/about')
-def showAbout():
-    pass        #TODO: return about page
+# @app.route('/')
+# def hello_world():
+#     obj = "foo"
+#     return render_template('layout.html', obj=obj)
 
 @app.route('/js/<path:path>')
 def sendJS(path):

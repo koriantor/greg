@@ -1,0 +1,20 @@
+{% from "macros.html" import nav_link with context %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    {% block head %}
+        <title>My application</title>
+    {% endblock %}
+    </head>
+    <body>
+        {{ obj }}
+        <p>layout page!</p>
+        <ul class="nav-list">
+            {#{ nav_link('home', 'Home') }#}
+            {#{ nav_link('about', 'About') }#}
+            {#{ nav_link('contact', 'Get in touch') }#}
+        </ul>
+    {% block body %}
+    {% endblock %}
+    </body>
+</html>
