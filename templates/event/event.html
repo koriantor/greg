@@ -1,4 +1,49 @@
 {% extends "layout.html" %}
+{% block head %}
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+{% endblock %}
+
 {% block body %}
-    <p>eventID = {{ eventID }}</p>
+<h2>Wish List Status</h2>
+<p>eventID = {{ eventID }}</p>
+<table>
+  <tr>
+    <th>Item Requested</th>
+    <th>Quantity</th>
+    <th>Claimed</th>
+  </tr>
+  <tr>
+    <td>Pen</td>
+    <td>5</td>
+    <td>yes</td>
+  </tr>
+  <tr>
+    <td>Shirt</td>
+    <td>1</td>
+    <td>No (1 left to Claim)</td>
+  </tr>
+  <tr>
+    <td>Jeans</td>
+    <td>2</td>
+    <td>No (1 Left to claim)</td>
+  </tr>
+
+</table>
 {% endblock %}
