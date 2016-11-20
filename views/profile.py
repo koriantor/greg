@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, g
 
-from models import user
+#from models import user
 
 # The prefix is defined on registration in templates/__init__.py.
 profile_blueprint = Blueprint('profile', __name__, url_prefix="/profile/<profileID>")

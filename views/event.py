@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, g
 
-from models import event
+#from models import event
 
 # The prefix is defined on registration in templates/__init__.py.
 event_blueprint = Blueprint('event', __name__, url_prefix="/<eventID>")

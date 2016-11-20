@@ -17,11 +17,12 @@ def index():
     obj = "foo"
     return render_template('home/index.html')
 
-@app.route('/login')
+@app.route('/login/')
 def login():
+    print("here")
     return render_template('home/login.html')
 
-@app.route('/about')
+@app.route('/about/')
 def about():
     return render_template('home/about.html')
 

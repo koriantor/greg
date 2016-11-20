@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, g
 
-from models import item
+#from models import item
 
 # The prefix is defined on registration in templates/__init__.py.
 item_blueprint = Blueprint('item', __name__, url_prefix="/item/<itemID>")
