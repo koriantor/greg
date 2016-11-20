@@ -3,11 +3,11 @@ from flask import Blueprint, render_template, g
 from models import event
 
 # The prefix is defined on registration in templates/__init__.py.
-event_blueprint = Blueprint('event', __name__, url_prefix="/<user_url_slug>")
+event_blueprint = Blueprint('event', __name__, url_prefix="/<eventID>")
 
 @event_blueprint.url_value_preprocessor
 def get_profile_owner(endpoint, values):
-    x = values.pop('user_url_slug')
+    g.eventID = values.pop('eventID')
     pass
     # query is api for SQLalchemy
     #query = user.query.filter_by(url_slug=values.pop('user_url_slug'))
@@ -15,4 +15,5 @@ def get_profile_owner(endpoint, values):
 
 @event_blueprint.route('/')
 def eventPage():
-    return render_template('home/event.html')
+    eventID = g.eventID
+    return render_template('event/event.html', eventID=eventID)

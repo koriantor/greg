@@ -3,14 +3,11 @@ from flask import Blueprint, render_template, g
 from models import user
 
 # The prefix is defined on registration in templates/__init__.py.
-profile_blueprint = Blueprint('profile', __name__, url_prefix="/profile/<user_url_slug>")
+profile_blueprint = Blueprint('profile', __name__, url_prefix="/profile/<profileID>")
 
 @profile_blueprint.url_value_preprocessor
 def get_profile_owner(endpoint, values):
-    url_slug = values.pop('user_url_slug')
-    # query is api for SQLalchemy
-    #query = user.query.filter_by(url_slug=values.pop('user_url_slug'))
-    #g.profile_owner = query.first_or_404()
+    g.user = values.pop('profileID')
 
 @profile_blueprint.route('/')
 def profile():

@@ -1,7 +1,6 @@
 from flask import Flask, render_template, send_from_directory, render_template_string
-from views.user import profile_blueprint
+from views.profile import profile_blueprint
 from views.item import item_blueprint
-from views.home import home_blueprint
 from views.event import event_blueprint
 
 app = Flask(__name__)
@@ -9,15 +8,22 @@ app = Flask(__name__)
 # ============
 #    ROUTES
 # ============
-app.register_blueprint(profile_blueprint, url_prefix='/profile/<user_url_slug>')
-app.register_blueprint(item_blueprint, url_prefix="/item")
-app.register_blueprint(home_blueprint, url_prefix="/<user_url_slug>")
-app.register_blueprint(event_blueprint, url_prefix="/<user_url_slug>")
+app.register_blueprint(profile_blueprint, url_prefix='/profile/<profileID>')
+app.register_blueprint(item_blueprint, url_prefix="/item/<itemID>")
+app.register_blueprint(event_blueprint, url_prefix="/event/<eventID>")
 
-# @app.route('/')
-# def hello_world():
-#     obj = "foo"
-#     return render_template('layout.html', obj=obj)
+@app.route('/')
+def index():
+    obj = "foo"
+    return render_template('home/index.html')
+
+@app.route('/login')
+def login():
+    return render_template('home/login.html')
+
+@app.route('/about')
+def about():
+    return render_template('home/about.html')
 
 @app.route('/js/<path:path>')
 def sendJS(path):
